@@ -7,7 +7,7 @@ export default function Topbar() {
     <>
       {/* Container to hold all navbar content. */}
       <div className="navContainer">
-        <Link to="/" className="navItem">
+        <Link to="/home" className="navItem">
           Task Manager
         </Link>
         {/* Container for login and signup buttons. */}
