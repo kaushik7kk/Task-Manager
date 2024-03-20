@@ -3,13 +3,16 @@ import "../../styles/Dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 
-export default function ControlPanel() {
+export default function ControlPanel(props) {
+  
+
+  let pageType = props.type.toUpperCase()
   return (
     <>
       <div className="controlContainer">
         <button>
           <FontAwesomeIcon icon={faSquarePlus} />
-          Add New Task
+          <span>{`ADD NEW ${pageType}`}</span>
         </button>
         <form action="">
           <input type="text" />
