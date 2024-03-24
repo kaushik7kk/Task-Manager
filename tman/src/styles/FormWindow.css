@@ -1,0 +1,92 @@
+.window {
+    position: absolute;
+    top: 0;
+    background: rgba(154, 212, 243, 0.666);
+    /* background: rgba(154, 212, 243, 0.666); */
+    width: 100vw;
+    height: 100vh;
+    filter: blur(100px);
+    z-index: 1;
+}
+
+/* Opacity for background components = 20%. */
+/* z-index to be updated. */
+
+
+.formContainer {
+    position: absolute;
+    top: 15vh;
+    left: 32vw;
+    width: 30vw;
+    height: 70vh;
+    border: 1px solid black;
+    border-radius: 20px;
+    /* box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); */
+    z-index: 200;
+    padding: 2rem;
+    background: radial-gradient(at center, #51baef, #010435);
+    
+}
+
+.taskForm {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: aliceblue;
+}
+
+.inputs {
+    display: flex;
+    height: 30vh;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.inputs label {
+    font-weight: 700;
+}
+
+.taskForm .inputs input {
+    background: transparent;
+    border-radius: 10px;
+    border: none;
+    height: 7vh;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+    color: aliceblue;
+    font-weight: 500;
+    padding: 1rem;
+}
+
+.inputs input::placeholder {
+    color: rgb(158, 156, 156);
+}
+
+.time-inputs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.time-inputs input {
+    width: 5vw;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.buttons button {
+    background: transparent;
+    border-radius: 10px;
+    border: none;
+    width: 10vw;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: aliceblue;
+    font-weight: 700;
+}

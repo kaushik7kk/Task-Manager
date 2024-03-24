@@ -8,7 +8,12 @@ import {
   faSquareCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { useSelector } from 'react-redux';
+
 export default function DashTable(props) {
+  
+  const loggedIn = useSelector((state) => state.loggedIn);
+
   // Output to render for tasks.
   let taskTable = (
     <>
@@ -26,10 +31,10 @@ export default function DashTable(props) {
               <tr>
                 <td>{obj.title}</td>
                 <td className="actions">
-                  <FontAwesomeIcon icon={faSquareCheck} />
-                  <FontAwesomeIcon icon={faPencil} />
-                  <FontAwesomeIcon icon={faTrash} />
-                  <FontAwesomeIcon icon={faClock} />
+                  <FontAwesomeIcon icon={faSquareCheck} className="icon"/>
+                  <FontAwesomeIcon icon={faPencil} className="icon"/>
+                  <FontAwesomeIcon icon={faTrash} className="icon"/>
+                  <FontAwesomeIcon icon={faClock} className="icon"/>
                 </td>
                 <td>{obj.time}</td>
               </tr>
@@ -100,7 +105,15 @@ export default function DashTable(props) {
     case "categories":
       return categoryTable;
     case "groups":
-      return groupTable;
+      if (loggedIn) {
+        return groupTable;
+      } else {
+        return (
+          <>
+            <p>Please login to access groups!!</p>
+          </>
+        )
+      }
     default:
       break;
   }

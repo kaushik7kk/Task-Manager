@@ -60,3 +60,9 @@
   color: aliceblue;
   font-weight: 600;
 }
+
+.stackList p {
+  text-align: center;
+  margin-top: 10vh;
+  font-size: 1.5rem;
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/HomeDash.css";
 import HomeStack from "./HomeStack";
+import { useSelector } from "react-redux";
 
 let dummyData = {
   tasks: [
@@ -39,12 +40,15 @@ let dummyData = {
 };
 
 export default function HomeDash() {
+
+  const loggedIn = useSelector(state => state.loggedIn);
+
   return (
     <>
       <div className="homeDashContainer">
         <HomeStack title="Tasks" data={dummyData.tasks}/>
         <HomeStack title="Categories" data={dummyData.categories}/>
-        <HomeStack title="Groups" data={dummyData.groups}/>
+        <HomeStack title="Groups" data={!loggedIn ? loggedIn :dummyData.groups}/>
       </div>
     </>
   );

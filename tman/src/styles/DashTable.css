@@ -38,6 +38,7 @@ th {
   border-right: 1px solid rgba(0, 0, 0, 0.136);
   text-align: center;
   width: 25%;
+  cursor: default;
 }
 
 .dashTable td {
@@ -60,4 +61,24 @@ th:last-of-type {
 .actions {
     display: flex;
     justify-content: space-evenly;
+}
+
+p {
+  margin: auto;
+  font-weight: 700;
+  font-size: 2rem;
+  color: aliceblue;
+}
+
+.icon {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.icon:hover {
+  color: rgb(0, 32, 57);
+}
+
+.icon:active {
+  transform: scale(0.8);
 }

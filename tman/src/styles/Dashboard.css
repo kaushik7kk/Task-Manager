@@ -47,3 +47,7 @@
 .controlContainer button:hover {
   color: rgb(0, 32, 57);
 }
+
+.controlContainer button:active {
+  transform: scale(0.8);
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import Topbar from "../../../components/Topbar";
 import Dashboard from "../../../components/dashboard/Dashboard";
+import FormWindow from "../../../components/FormWindow";
 
 export default function TaskPage() {
   // Dummy data for Task Page.
@@ -15,6 +16,7 @@ export default function TaskPage() {
 
   return (
     <>
+      <FormWindow />
       <Topbar />
       <Dashboard data={data} />
     </>
