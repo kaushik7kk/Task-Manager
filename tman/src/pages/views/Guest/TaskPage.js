@@ -2,6 +2,7 @@ import React from "react";
 import Topbar from "../../../components/Topbar";
 import Dashboard from "../../../components/dashboard/Dashboard";
 import FormWindow from "../../../components/FormWindow";
+import { useSelector } from "react-redux";
 
 export default function TaskPage() {
   // Dummy data for Task Page.
@@ -14,11 +15,23 @@ export default function TaskPage() {
     ],
   };
 
+  // Visibility state for displaying form.
+  const formVisibility = useSelector((state) => state.forms);
+
   return (
     <>
-      <FormWindow />
-      <Topbar />
-      <Dashboard data={data} />
+      {formVisibility.visibility ? (
+        <>
+          <FormWindow type={data.type} />
+          <Topbar />
+          <Dashboard data={data} />
+        </>
+      ) : (
+        <>
+          <Topbar />
+          <Dashboard data={data} />
+        </>
+      )}
     </>
   );
 }

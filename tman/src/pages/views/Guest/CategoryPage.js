@@ -1,6 +1,8 @@
 import React from "react";
 import Topbar from "../../../components/Topbar";
 import Dashboard from "../../../components/dashboard/Dashboard";
+import { useSelector } from "react-redux";
+import FormWindow from "../../../components/FormWindow";
 
 export default function CategoryPage() {
   // Dummy data for Category Page.
@@ -13,10 +15,23 @@ export default function CategoryPage() {
     ],
   };
 
+  // Visbility state for displaying form.
+  const formVisibility = useSelector((state) => state.forms);
+
   return (
     <>
-      <Topbar />
-      <Dashboard data={data} />
+      {formVisibility.visibility ? (
+        <>
+          <FormWindow type={data.type} />
+          <Topbar />
+          <Dashboard data={data} />
+        </>
+      ) : (
+        <>
+          <Topbar />
+          <Dashboard data={data} />
+        </>
+      )}
     </>
   );
 }

@@ -1,19 +1,18 @@
+/* Blur background for hiding content except form. */
 .window {
     position: absolute;
     top: 0;
     background: rgba(154, 212, 243, 0.666);
-    /* background: rgba(154, 212, 243, 0.666); */
     width: 100vw;
     height: 100vh;
     filter: blur(100px);
     z-index: 1;
 }
 
-/* Opacity for background components = 20%. */
-/* z-index to be updated. */
-
-
-.formContainer {
+/* ----------------------------- */
+/* Styling for task forms. */
+/* ----------------------------- */
+.taskFormContainer {
     position: absolute;
     top: 15vh;
     left: 32vw;
@@ -21,7 +20,7 @@
     height: 70vh;
     border: 1px solid black;
     border-radius: 20px;
-    /* box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); */
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
     z-index: 200;
     padding: 2rem;
     background: radial-gradient(at center, #51baef, #010435);
@@ -89,4 +88,63 @@
     font-size: 1.2rem;
     color: aliceblue;
     font-weight: 700;
+    transition: all 0.2s;
+}
+
+.buttons button:active {
+    transform: scale(0.8);
+}
+
+/* ----------------------------- */
+/* Styling for category forms. */
+/* ----------------------------- */
+
+.categoryFormContainer {
+    position: absolute;
+    top: 15vh;
+    left: 35vw;
+    z-index: 200;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    width: 30vw;
+    height: 70vh;
+    background: radial-gradient(at center, #51baef, #010435);
+    padding: 2rem;
+}
+
+.categoryForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: aliceblue;
+    height: 60vh;
+}
+
+.categoryForm input {
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    height: 7vh;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    padding: 1rem;
+    color: aliceblue;
+}
+
+.categoryForm select {
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    height: 8vh;
+    color: aliceblue;
+    padding: 1rem;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+option {
+    background: inherit;
+    color: black;
+}
+
+.categoryForm input::placeholder {
+    color: rgb(158, 156, 156);
 }

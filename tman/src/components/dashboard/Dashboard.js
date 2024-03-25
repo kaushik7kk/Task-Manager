@@ -5,10 +5,15 @@ import DashTable from "./DashTable";
 import { useSelector } from "react-redux";
 
 export default function Dashboard(props) {
+
+  // Login state for enforcing group features.
   const loggedIn = useSelector((state) => state.loggedIn);
+  // Visibility state for pulling down dashboard container.
+  const formVisibility = useSelector(state => state.forms);
+
   return (
     <>
-      <div className="dashContainer">
+      <div className={`dashContainer ${formVisibility.visibility ? 'pulldown' : ''}`}>
         {props.data.type === "groups" && !loggedIn ? (
           <DashTable data={props.data} />
         ) : (

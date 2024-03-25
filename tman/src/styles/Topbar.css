@@ -11,6 +11,11 @@
   margin-right: auto;
 }
 
+
+.pulldown {
+  z-index: -99;
+  opacity: 20%;
+}
 .navContainer a {
   text-decoration: none;
   color: white;
@@ -35,4 +40,10 @@
   font-family: "Mukta", sans-serif;
   font-weight: 500;
   font-style: normal;
+}
+
+
+.pulldown {
+  z-index: -99;
+  opacity: 20%;
 }
