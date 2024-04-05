@@ -24,11 +24,15 @@ export default function HomeStack(props) {
             <div className="stackHeading">{props.title}</div>
           </Link>
           <div className="stackList">
-            <ul>
-              {props.data.map((item) => (
-                <li>{item}</li>
-              ))}
-            </ul>
+            {!props.data.length ? (
+              <p>No data found!!!</p>
+            ) : (
+              <ul>
+                {props.data.map((item) => (
+                  <li key={item.id} className={item.finished ? 'finished' : ''}>{item.title}</li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </>

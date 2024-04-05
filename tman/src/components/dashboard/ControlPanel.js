@@ -9,7 +9,7 @@ export default function ControlPanel(props) {
   
   const dispatch = useDispatch()
   const addFormHandler = () => {
-    dispatch(toggleWindow());
+    dispatch(toggleWindow({type: 'new'}));
   }
 
   let pageType = props.type.toUpperCase()
@@ -21,7 +21,8 @@ export default function ControlPanel(props) {
           <span>{`ADD NEW ${pageType}`}</span>
         </button>
         <form action="">
-          <input type="text" />
+          <label htmlFor="controlSearch">Search:</label>
+          <input type="text" id="controlSearch" />
         </form>
       </div>
     </>

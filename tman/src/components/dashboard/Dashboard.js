@@ -14,12 +14,12 @@ export default function Dashboard(props) {
   return (
     <>
       <div className={`dashContainer ${formVisibility.visibility ? 'pulldown' : ''}`}>
-        {props.data.type === "groups" && !loggedIn ? (
-          <DashTable data={props.data} />
+        {props.page.type === "groups" && !loggedIn ? (
+          <DashTable data={props.page.data} type={props.page.type} />
         ) : (
           <>
-            <ControlPanel type={props.data.type} />
-            <DashTable data={props.data} />
+            <ControlPanel type={props.page.type} />
+            <DashTable data={props.page.data} type={props.page.type} />
           </>
         )}
       </div>
