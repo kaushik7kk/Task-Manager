@@ -70,15 +70,13 @@ p {
   color: aliceblue;
 }
 
-.icon {
-  cursor: pointer;
+.action {
+  background: transparent;
+  border: none;
+  color: aliceblue;
   transition: all 0.2s;
 }
 
-.icon:hover {
+.action:hover { 
   color: rgb(0, 32, 57);
-}
-
-.icon:active {
-  transform: scale(0.8);
 }

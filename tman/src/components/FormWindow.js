@@ -66,11 +66,11 @@ export default function FormWindow(props) {
             name="taskTitle"
             id="taskTitle"
             placeholder="Task title"
+            // Default value for edit form.
             defaultValue={
               forms.type === "edit"
-                ? tasks.data.find(
-                    (task) => toString(task.id) === toString(forms.id)
-                  ).title
+                ? tasks.data.filter((task) => task.id === Number(forms.id))[0]
+                    .title
                 : ""
             }
           />

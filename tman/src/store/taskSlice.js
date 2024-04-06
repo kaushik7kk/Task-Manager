@@ -30,17 +30,24 @@ export const taskSlice = createSlice({
     // Reducer to edit task.
     editTask: (state, action) => {
       const { title, time, id } = action.payload;
-      let foundTask = state.data.find(task => toString(task.id) === toString(id))
+      let foundTask = state.data.find((task) => task.id === Number(id));
+      foundTask.finished = false;
       foundTask.title = title;
       foundTask.time = time;
-      foundTask.finished = false;
+      sessionStorage.setItem("tasks", JSON.stringify(state.data));
+      return state;
+    },
+    // Reducer to delete a task.
+    deleteTask: (state, action) => {
+      const { id } = action.payload;
+      state.data = state.data.filter((task) => task.id !== Number(id));
       sessionStorage.setItem("tasks", JSON.stringify(state.data));
       return state;
     },
     // Reducer to toggle finished state for task.
     toggleFinish: (state, action) => {
       let foundTask = state.data.find(
-        (ele) => toString(ele.id) === toString(action.payload.rowId)
+        (ele) => ele.id === Number(action.payload.rowId)
       );
       foundTask.finished = !foundTask.finished;
       sessionStorage.setItem("tasks", JSON.stringify(state.data));
@@ -49,6 +56,7 @@ export const taskSlice = createSlice({
   },
 });
 
-export const { addTask, editTask, toggleFinish } = taskSlice.actions;
+export const { addTask, editTask, deleteTask, toggleFinish } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;

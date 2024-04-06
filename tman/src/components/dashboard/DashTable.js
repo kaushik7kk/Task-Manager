@@ -1,14 +1,7 @@
 import React from "react";
 import "../../styles/DashTable.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPencil,
-  faTrash,
-  faClock,
-  faSquareCheck,
-} from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { toggleFinish } from "../../store/taskSlice";
+import { deleteTask, toggleFinish } from "../../store/taskSlice";
 import { toggleWindow } from "../../store/formSlice";
 
 export default function DashTable(props) {
@@ -17,12 +10,18 @@ export default function DashTable(props) {
   const taskHandlers = {
     // Event handler for check icon.
     finishClickHandler: (e) => {
-      let row = e.target.parentElement.parentElement.parentElement;
+      let row = e.target.parentElement.parentElement;
       dispatch(toggleFinish({ rowId: row.id }));
     },
+    // Event handler for pencil icon.
     editClickHandler: (e) => {
-      let row = e.target.parentElement.parentElement.parentElement;
-      dispatch(toggleWindow({ type: "edit" , id: row.id}));
+      let row = e.target.parentElement.parentElement;
+      dispatch(toggleWindow({ type: "edit", id: row.id }));
+    },
+    // Event handler for trash icon.
+    deleteClickHandler: (e) => {
+      let row = e.target.parentElement.parentElement;
+      dispatch(deleteTask({ id: row.id }));
     },
   };
 
@@ -46,18 +45,25 @@ export default function DashTable(props) {
                       {obj.title}
                     </td>
                     <td className="actions">
-                      <FontAwesomeIcon
-                        icon={faSquareCheck}
-                        className="icon"
+                      <button
+                        className="action"
                         onClick={taskHandlers.finishClickHandler}
-                      />
-                      <FontAwesomeIcon
-                        icon={faPencil}
-                        className="icon"
+                      >
+                        Finish
+                      </button>
+                      <button
+                        className="action"
                         onClick={taskHandlers.editClickHandler}
-                      />
-                      <FontAwesomeIcon icon={faTrash} className="icon" />
-                      <FontAwesomeIcon icon={faClock} className="icon" />
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="action"
+                        onClick={taskHandlers.deleteClickHandler}
+                      >
+                        Delete
+                      </button>
+                      <button className="action">Schedule</button>
                     </td>
                     <td className={obj.finished ? "finished" : ""}>
                       {obj.time}
