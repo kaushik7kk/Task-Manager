@@ -3,6 +3,7 @@ import "../styles/FormWindow.css";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleWindow } from "../store/formSlice";
 import { addTask, editTask } from "../store/taskSlice";
+import { addCategory } from "../store/categorySlice";
 
 export default function FormWindow(props) {
   // States
@@ -25,7 +26,7 @@ export default function FormWindow(props) {
     let sec = document.querySelector("#sec").value;
 
     // New task creation.
-    if (forms.type === "new") {
+    if (forms.type === "newTask") {
       dispatch(
         addTask({
           title,
@@ -39,7 +40,7 @@ export default function FormWindow(props) {
       );
     }
     // Editing existing task.
-    else if (forms.type === "edit") {
+    else if (forms.type === "editTask") {
       dispatch(
         editTask({
           title,
@@ -54,6 +55,20 @@ export default function FormWindow(props) {
       );
     }
     dispatch(toggleWindow({ type: "new", id: null }));
+  };
+
+  const categorySubmitHandler = (e) => {
+    e.preventDefault();
+
+    let title = document.querySelector("#catTitle").value;
+    let schedType = document.querySelector("#schedType").value;
+    dispatch(
+      addCategory({
+        title,
+        schedType,
+      })
+    );
+    dispatch(toggleWindow({type: 'new', id: null}))
   };
 
   const taskForm = (
@@ -94,10 +109,10 @@ export default function FormWindow(props) {
 
   const categoryForm = (
     <div className="categoryFormContainer">
-      <form action="" className="categoryForm">
-        <label htmlFor="">Enter category title</label>
-        <input type="text" placeholder="Category title" />
-        <label htmlFor="">Select scheduling type</label>
+      <form action="" className="categoryForm" onSubmit={categorySubmitHandler}>
+        <label htmlFor="catTitle">Enter category title</label>
+        <input type="text" placeholder="Category title" id="catTitle" />
+        <label htmlFor="schedType">Select scheduling type</label>
         <select name="" id="schedType">
           <option value="Individual">
             Individual - Separate for each task

@@ -10,7 +10,6 @@ export const formSlice = createSlice({
   reducers: {
     // Reducer to toggle form window.
     toggleWindow: (state, action) => {
-      console.log(action.payload);
       state = {
         ...state,
         visibility: !state.visibility,

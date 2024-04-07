@@ -3,6 +3,7 @@ import "../../styles/DashTable.css";
 import { useDispatch } from "react-redux";
 import { deleteTask, toggleFinish } from "../../store/taskSlice";
 import { toggleWindow } from "../../store/formSlice";
+import { Link } from "react-router-dom";
 
 export default function DashTable(props) {
   const dispatch = useDispatch();
@@ -79,30 +80,32 @@ export default function DashTable(props) {
 
   //Output to render for categories.
 
-  // let categoryTable = (
-  //   <>
-  //     <table className="dashTable">
-  //       <thead>
-  //         <tr>
-  //           <th>Category Name</th>
-  //           <th>No. of Tasks</th>
-  //           <th>Scheduling</th>
-  //         </tr>
-  //       </thead>
-  //       <tbody>
-  //         {props.data.payload.map((obj) => {
-  //           return (
-  //             <tr>
-  //               <td>{obj.title}</td>
-  //               <td>{obj.numOfTasks}</td>
-  //               <td>{obj.schedType}</td>
-  //             </tr>
-  //           );
-  //         })}
-  //       </tbody>
-  //     </table>
-  //   </>
-  // );
+  let categoryTable = (
+    <>
+      <table className="dashTable">
+        <thead>
+          <tr>
+            <th>Category Name</th>
+            <th>No. of Tasks</th>
+            <th>Scheduling</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.data.length
+            ? props.data.map((obj) => {
+                return (
+                  <tr key={obj.id} id={obj.id} className="categoryRow">
+                    <td className="catTitle">{obj.title}</td>
+                    <td>{obj.numOfTasks}</td>
+                    <td>{obj.schedType}</td>
+                  </tr>
+                );
+              })
+            : ""}
+        </tbody>
+      </table>
+    </>
+  );
 
   // Output to render for groups.
 
@@ -134,8 +137,8 @@ export default function DashTable(props) {
   switch (props.type) {
     case "tasks":
       return taskTable;
-    // case "categories":
-    //   return categoryTable;
+    case "categories":
+      return categoryTable;
     // case "groups":
     //   if (loggedIn) {
     //     return groupTable;

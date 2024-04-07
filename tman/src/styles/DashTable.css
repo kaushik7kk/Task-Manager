@@ -42,7 +42,7 @@ th {
 }
 
 .dashTable td {
-  height: 9vh;
+  height: 7vh;
 }
 
 .dashTable td:first-of-type,
@@ -79,4 +79,13 @@ p {
 
 .action:hover { 
   color: rgb(0, 32, 57);
+}
+
+.categoryRow:hover {
+  color: rgb(0, 32, 57);
+  transition: all 0.2s;
+}
+
+.catTitle:hover {
+  cursor: pointer;
 }

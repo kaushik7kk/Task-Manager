@@ -5,31 +5,24 @@ import { useSelector } from "react-redux";
 import FormWindow from "../../../components/FormWindow";
 
 export default function CategoryPage() {
-  // Dummy data for Category Page.
-  let data = {
-    type: "categories",
-    payload: [
-      { title: "Category 1", numOfTasks: 5, schedType: "Individual" },
-      { title: "Category 2", numOfTasks: 2, schedType: "Combined" },
-      { title: "Category 3", numOfTasks: 0, schedType: "Combined" },
-    ],
-  };
 
   // Visbility state for displaying form.
   const formVisibility = useSelector((state) => state.forms);
+  // Category state for data and type loading.
+  const categories = useSelector(state => state.categories);
 
   return (
     <>
       {formVisibility.visibility ? (
         <>
-          <FormWindow type={data.type} />
+          <FormWindow type={categories.type} />
           <Topbar />
-          <Dashboard data={data} />
+          <Dashboard page={categories} />
         </>
       ) : (
         <>
           <Topbar />
-          <Dashboard data={data} />
+          <Dashboard page={categories} />
         </>
       )}
     </>
