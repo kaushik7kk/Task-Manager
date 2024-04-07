@@ -17,7 +17,7 @@ export default function DashTable(props) {
     // Event handler for pencil icon.
     editClickHandler: (e) => {
       let row = e.target.parentElement.parentElement;
-      dispatch(toggleWindow({ type: "edit", id: row.id }));
+      dispatch(toggleWindow({ type: "edittasks", id: row.id }));
     },
     // Event handler for trash icon.
     deleteClickHandler: (e) => {

@@ -26,7 +26,7 @@ export default function FormWindow(props) {
     let sec = document.querySelector("#sec").value;
 
     // New task creation.
-    if (forms.type === "newTask") {
+    if (forms.type === "newtasks") {
       dispatch(
         addTask({
           title,
@@ -40,7 +40,7 @@ export default function FormWindow(props) {
       );
     }
     // Editing existing task.
-    else if (forms.type === "editTask") {
+    else if (forms.type === "edittasks") {
       dispatch(
         editTask({
           title,
@@ -83,7 +83,7 @@ export default function FormWindow(props) {
             placeholder="Task title"
             // Default value for edit form.
             defaultValue={
-              forms.type === "edit"
+              forms.type === "edittasks"
                 ? tasks.data.filter((task) => task.id === Number(forms.id))[0]
                     .title
                 : ""

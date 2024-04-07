@@ -9,7 +9,7 @@ export default function ControlPanel(props) {
   
   const dispatch = useDispatch()
   const addFormHandler = () => {
-    dispatch(toggleWindow({type: 'new'}));
+    dispatch(toggleWindow({type: `new${props.type}`}));
   }
 
   let pageType = props.type.toUpperCase()
