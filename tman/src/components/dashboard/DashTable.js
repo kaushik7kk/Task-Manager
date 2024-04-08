@@ -94,11 +94,13 @@ export default function DashTable(props) {
           {props.data.length
             ? props.data.map((obj) => {
                 return (
-                  <tr key={obj.id} id={obj.id} className="categoryRow">
-                    <td className="catTitle">{obj.title}</td>
-                    <td>{obj.numOfTasks}</td>
-                    <td>{obj.schedType}</td>
-                  </tr>
+                  <Link to="/category" className="catLink">
+                    <tr key={obj.id} id={obj.id} className="categoryRow">
+                      <td className="catTitle">{obj.title}</td>
+                      <td>{obj.numOfTasks}</td>
+                      <td>{obj.schedType}</td>
+                    </tr>
+                  </Link>
                 );
               })
             : ""}

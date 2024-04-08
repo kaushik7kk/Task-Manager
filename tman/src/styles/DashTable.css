@@ -89,3 +89,8 @@ p {
 .catTitle:hover {
   cursor: pointer;
 }
+
+.catLink {
+  text-decoration: none;
+  color: aliceblue;
+}

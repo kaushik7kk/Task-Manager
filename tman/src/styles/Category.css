@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+.categoryContainer {
+  width: 90vw;
+  height: 83vh;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.categoryHead {
+  width: 35vw;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  font-size: 1.2rem;
+  color: rgb(0, 32, 57);
+  cursor: default;
+}
+
+.categoryControls {
+  width: 55vw;
+  height: 8vh;
+  margin-top: 3.5vh;
+  display: flex;
+  justify-content: space-around;
+  color: aliceblue;
+}
+
+.categoryControls span {
+  transition: all 0.2s;
+}
+
+.categoryControls span:hover {
+  color: rgb(0, 32, 57);
+  cursor: pointer;
+}
+
+.categoryContainer .categoryControls span:active {
+  transform: scale(0.8);
+}
+
+.categoryTable {
+  width: 80vw;
+  margin-top: 2vh;
+  overflow: auto;
+}
+
+.categoryTable thead {
+  height: 7vh;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.136);
+  color: rgb(0, 32, 57);
+}
+
+.categoryTable tbody {
+  display: block;
+  height: 55vh;
+  margin-top: 1vh;
+  overflow: auto;
+}
+
+.categoryTable tbody::-webkit-scrollbar {
+  display: none;
+}
+
+.categoryTable tr {
+  display: flex;
+  justify-content: space-between;
+}
+
+.categoryTable td,
+th {
+  padding: 0.5rem;
+  border-left: 1px solid rgba(0, 0, 0, 0.136);
+  border-right: 1px solid rgba(0, 0, 0, 0.136);
+  text-align: center;
+  width: 25%;
+  cursor: default;
+}
+
+.categoryTable td {
+  height: 8vh;
+  color: aliceblue;
+}
+
+.categoryTable td:first-of-type,
+th:first-of-type {
+  border-left: none;
+  text-align: left;
+  padding-left: 1rem;
+  width: 50%;
+}
+
+.categoryTable td:last-of-type,
+th:last-of-type {
+  border-right: none;
+}
+
+.categoryTable .catActions {
+    display: flex;
+    justify-content: space-around;
+}
+
+.catActions button{
+    background: transparent;
+    color: aliceblue;
+    border: none;
+    transition: all 0.2s;
+}
+
+.catActions button:hover{
+    color: rgb(0, 32, 57);
+}
