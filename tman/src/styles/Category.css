@@ -13,7 +13,7 @@
 }
 
 .categoryHead {
-  width: 35vw;
+  width: 25vw;
   height: 5vh;
   display: flex;
   justify-content: center;
@@ -44,7 +44,19 @@
   transition: all 0.2s;
 }
 
+
 .categoryControls span:hover {
+  color: rgb(0, 32, 57);
+  cursor: pointer;
+}
+
+.categoryControls a{
+  text-decoration: none;
+  color: aliceblue;
+  transition: all 0.2s;
+}
+
+.categoryControls a:hover{
   color: rgb(0, 32, 57);
   cursor: pointer;
 }
@@ -124,3 +136,4 @@ th:last-of-type {
 .catActions button:hover{
     color: rgb(0, 32, 57);
 }
+

@@ -59,8 +59,8 @@ th:last-of-type {
 }
 
 .actions {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 p {
@@ -77,17 +77,8 @@ p {
   transition: all 0.2s;
 }
 
-.action:hover { 
+.action:hover {
   color: rgb(0, 32, 57);
-}
-
-.categoryRow:hover {
-  color: rgb(0, 32, 57);
-  transition: all 0.2s;
-}
-
-.catTitle:hover {
-  cursor: pointer;
 }
 
 .catLink {

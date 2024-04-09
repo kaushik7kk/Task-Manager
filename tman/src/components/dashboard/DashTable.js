@@ -4,10 +4,12 @@ import { useDispatch } from "react-redux";
 import { deleteTask, toggleFinish } from "../../store/taskSlice";
 import { toggleWindow } from "../../store/formSlice";
 import { Link } from "react-router-dom";
+import { setCurrCat } from '../../store/categorySlice';
 
 export default function DashTable(props) {
   const dispatch = useDispatch();
 
+  // Event handlers for task table.
   const taskHandlers = {
     // Event handler for check icon.
     finishClickHandler: (e) => {
@@ -24,6 +26,12 @@ export default function DashTable(props) {
       let row = e.target.parentElement.parentElement;
       dispatch(deleteTask({ id: row.id }));
     },
+  };
+
+  // Switch handler for individual category.
+  const catClickHandler = (e) => {
+    let row = e.target.parentElement.parentElement;
+    dispatch(setCurrCat({ id: row.id }));
   };
 
   // Output to render for tasks.
@@ -94,13 +102,19 @@ export default function DashTable(props) {
           {props.data.length
             ? props.data.map((obj) => {
                 return (
-                  <Link to="/category" className="catLink">
-                    <tr key={obj.id} id={obj.id} className="categoryRow">
-                      <td className="catTitle">{obj.title}</td>
-                      <td>{obj.numOfTasks}</td>
-                      <td>{obj.schedType}</td>
-                    </tr>
-                  </Link>
+                  <tr key={obj.id} id={obj.id} className="categoryRow">
+                    <td className="catTitle">
+                      <Link
+                        to="/category"
+                        className="catLink"
+                        onClick={catClickHandler}
+                      >
+                        {obj.title}
+                      </Link>
+                    </td>
+                    <td>{obj.numOfTasks}</td>
+                    <td>{obj.schedType}</td>
+                  </tr>
                 );
               })
             : ""}

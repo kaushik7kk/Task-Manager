@@ -3,20 +3,30 @@ import "../styles/FormWindow.css";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleWindow } from "../store/formSlice";
 import { addTask, editTask } from "../store/taskSlice";
-import { addCategory } from "../store/categorySlice";
+import { addCatTask, addCategory, editCategory } from "../store/categorySlice";
 
 export default function FormWindow(props) {
   // States
   const forms = useSelector((state) => state.forms);
   const tasks = useSelector((state) => state.tasks);
+  const categories = useSelector((state) => state.categories);
+  let currTasks =
+    props.type === "taskList"
+      ? categories.data.find(
+          (category) => category.id === Number(categories.currCat)
+        ).taskIds
+      : [];
 
   const dispatch = useDispatch();
+  console.log(forms);
 
   // Event Handlers.
   const closeClickHandler = (e) => {
     e.preventDefault();
     dispatch(toggleWindow({ type: "new", id: null }));
   };
+
+  // Submission handlers.
 
   const taskSubmitHandler = (e) => {
     e.preventDefault();
@@ -59,16 +69,48 @@ export default function FormWindow(props) {
 
   const categorySubmitHandler = (e) => {
     e.preventDefault();
-
     let title = document.querySelector("#catTitle").value;
     let schedType = document.querySelector("#schedType").value;
+
+    // New category creation.
+    if (forms.type === "newcategories") {
+      dispatch(
+        addCategory({
+          title,
+          schedType,
+        })
+      );
+    }
+    // Editing existing category.
+    else if (forms.type === "editcategories") {
+      dispatch(
+        editCategory({
+          title,
+          schedType,
+        })
+      );
+    }
+    dispatch(toggleWindow({ type: "new", id: null }));
+  };
+
+  // Handler for updating tasks in category.
+  const listClickHandler = (e) => {
     dispatch(
-      addCategory({
-        title,
-        schedType,
+      addCatTask({
+        type: "toggle",
+        taskId: e.target.id,
       })
     );
-    dispatch(toggleWindow({type: 'new', id: null}))
+  };
+
+  // Handler for closing list form.
+  const doneClickHandler = (e) => {
+    dispatch(
+      toggleWindow({
+        type: "new",
+        id: null,
+      })
+    );
   };
 
   const taskForm = (
@@ -111,9 +153,30 @@ export default function FormWindow(props) {
     <div className="categoryFormContainer">
       <form action="" className="categoryForm" onSubmit={categorySubmitHandler}>
         <label htmlFor="catTitle">Enter category title</label>
-        <input type="text" placeholder="Category title" id="catTitle" />
+        <input
+          type="text"
+          placeholder="Category title"
+          id="catTitle"
+          defaultValue={
+            forms.type === "editcategories"
+              ? categories.data.filter(
+                  (category) => category.id === Number(categories.currCat)
+                )[0].title
+              : ""
+          }
+        />
         <label htmlFor="schedType">Select scheduling type</label>
-        <select name="" id="schedType">
+        <select
+          name=""
+          id="schedType"
+          defaultValue={
+            forms.type === "editcategories"
+              ? categories.data.filter(
+                  (category) => category.id === Number(categories.currCat)
+                )[0].schedType
+              : "Individual"
+          }
+        >
           <option value="Individual">
             Individual - Separate for each task
           </option>
@@ -126,6 +189,36 @@ export default function FormWindow(props) {
       </form>
     </div>
   );
+
+  const taskListForm =
+    props.type === "taskList" ? (
+      <>
+        <div className="listFormContainer">
+          <span>Choose the tasks to add:</span>
+          <div className="listBox">
+            <ul>
+              {tasks.data.map((task) => {
+                return (
+                  <li
+                    key={task.id}
+                    id={task.id}
+                    onClick={listClickHandler}
+                    className={currTasks.includes(task.id) ? "selected" : ""}
+                  >
+                    {task.title}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className="listButtons">
+            <button onClick={doneClickHandler}>Done</button>
+          </div>
+        </div>
+      </>
+    ) : (
+      <></>
+    );
 
   switch (props.type) {
     case "tasks":
@@ -142,6 +235,22 @@ export default function FormWindow(props) {
           {categoryForm}
         </>
       );
+    case "taskList":
+      if (forms.type === "editcategories") {
+        return (
+          <>
+            <div className="window"></div>
+            {categoryForm}
+          </>
+        );
+      } else {
+        return (
+          <>
+            <div className="window"></div>
+            {taskListForm}
+          </>
+        );
+      }
     default:
       break;
   }
