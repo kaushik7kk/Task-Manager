@@ -1,13 +1,14 @@
 import React from "react";
 import "../../styles/DashTable.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteTask, toggleFinish } from "../../store/taskSlice";
 import { toggleWindow } from "../../store/formSlice";
 import { Link } from "react-router-dom";
-import { setCurrCat } from '../../store/categorySlice';
+import { setCurrCat } from "../../store/categorySlice";
 
 export default function DashTable(props) {
   const dispatch = useDispatch();
+  const loggedIn = useSelector((state) => state.loggedIn);
 
   // Event handlers for task table.
   const taskHandlers = {
@@ -125,46 +126,48 @@ export default function DashTable(props) {
 
   // Output to render for groups.
 
-  // let groupTable = (
-  //   <>
-  //     <table className="dashTable">
-  //       <thead>
-  //         <tr>
-  //           <th>Group Name</th>
-  //           <th>No. of Members</th>
-  //           <th>Created By</th>
-  //         </tr>
-  //       </thead>
-  //       <tbody>
-  //         {props.data.payload.map((obj) => {
-  //           return (
-  //             <tr>
-  //               <td>{obj.title}</td>
-  //               <td>{obj.numOfMembers}</td>
-  //               <td>{obj.createdBy}</td>
-  //             </tr>
-  //           );
-  //         })}
-  //       </tbody>
-  //     </table>
-  //   </>
-  // );
+  let groupTable = (
+    <>
+      <table className="dashTable">
+        <thead>
+          <tr>
+            <th>Group Name</th>
+            <th>No. of Members</th>
+            <th>Created By</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.data.length
+            ? props.data.map((obj) => {
+                return (
+                  <tr>
+                    <td>{obj.title}</td>
+                    <td>{obj.numOfMembers}</td>
+                    <td>{obj.createdBy}</td>
+                  </tr>
+                );
+              })
+            : ""}
+        </tbody>
+      </table>
+    </>
+  );
 
   switch (props.type) {
     case "tasks":
       return taskTable;
     case "categories":
       return categoryTable;
-    // case "groups":
-    //   if (loggedIn) {
-    //     return groupTable;
-    //   } else {
-    //     return (
-    //       <>
-    //         <p>Please login to access groups!!</p>
-    //       </>
-    //     );
-    //   }
+    case "groups":
+      if (loggedIn) {
+        return groupTable;
+      } else {
+        return (
+          <>
+            <p>Please login to access groups!!</p>
+          </>
+        );
+      }
     default:
       break;
   }

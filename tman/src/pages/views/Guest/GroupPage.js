@@ -4,9 +4,9 @@ import Dashboard from "../../../components/dashboard/Dashboard";
 
 export default function GroupPage() {
   // Dummy data for Group Page.
-  let data = {
+  let page = {
     type: "groups",
-    payload: [
+    data: [
       {
         title: "Group 1",
         numOfMembers: 6,
@@ -28,7 +28,7 @@ export default function GroupPage() {
   return (
     <>
       <Topbar />
-      <Dashboard data={data} />
+      <Dashboard page={page} />
     </>
   );
 }

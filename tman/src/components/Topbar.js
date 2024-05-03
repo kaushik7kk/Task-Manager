@@ -17,10 +17,10 @@ export default function Topbar() {
         </Link>
         {/* Container for login and signup buttons. */}
         <div className="logLinks">
-          <Link to="" className="navItem">
+          <Link to="/login" className="navItem">
             Login
           </Link>
-          <Link to="" className="navItem">
+          <Link to="/signup" className="navItem">
             Signup
           </Link>
         </div>

@@ -7,6 +7,7 @@ import TaskPage from "./pages/views/Guest/TaskPage";
 import CategoryPage from "./pages/views/Guest/CategoryPage";
 import GroupPage from "./pages/views/Guest/GroupPage";
 import Category from "./pages/Category";
+import LoginPage from "./pages/views/Account/LoginPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/categories" Component={CategoryPage} />
         <Route path="/groups" Component={GroupPage} />
         <Route path="/category" Component={Category} />
+        <Route path="/login" Component={LoginPage} />
       </Routes>
     </Router>
   );
