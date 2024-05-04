@@ -8,6 +8,7 @@ import CategoryPage from "./pages/views/Guest/CategoryPage";
 import GroupPage from "./pages/views/Guest/GroupPage";
 import Category from "./pages/Category";
 import LoginPage from "./pages/views/Account/LoginPage";
+import SignupPage from "./pages/views/Account/SignupPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/groups" Component={GroupPage} />
         <Route path="/category" Component={Category} />
         <Route path="/login" Component={LoginPage} />
+        <Route path="/signup" Component={SignupPage} />
       </Routes>
     </Router>
   );
