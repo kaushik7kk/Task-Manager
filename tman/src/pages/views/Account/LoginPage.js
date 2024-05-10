@@ -9,12 +9,13 @@ export default function LoginPage(props) {
       <Topbar />
       <div className="loginFormContainer">
         <h1>Sign In</h1>
-        <form action="" className="loginForm">
+        <form action={`${window.location.protocol}//localhost:8000/api/login`} method="POST" className="loginForm">
           <div className="inputs">
             <label htmlFor="username">Username/E-mail</label>
             <input
               type="text"
               id="username"
+              name="username"
               placeholder="Enter your username or email-id"
             />
           </div>
@@ -23,6 +24,7 @@ export default function LoginPage(props) {
             <input
               type="password"
               id="pass"
+              name="password"
               placeholder="Enter your password"
             />
           </div>
